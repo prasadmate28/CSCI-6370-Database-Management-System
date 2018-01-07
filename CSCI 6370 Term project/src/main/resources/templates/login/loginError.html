@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>UGA Cloud Services</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+	<style>
+	html{
+	height: 100%;
+	}
+	.banner{
+	margin-left:10%;
+	color: #cd1429;
+	font-size:2.7em;
+	}
+	.login-container{
+	margin:150px;
+	}
+	
+	</style>
+</head>
+
+<body>
+	<header>
+        <img src="../images/images.png"  alt="UGA logo" style="height:6em"/>
+        <span style="margin-left:10%;color: #cd1429;font-size:2.7em;"><b>UGA Cloud services</b></span>
+    </header>
+
+ <div class="container">
+	<form action="/loginDetails" method="post" th:object="${Userdetails}">
+        <span><b>You have entered wrong credentials. Please enter correct details.</b></span>
+        
+        <div class="login-container" align="center">
+        <div class="input-group input-group-md col-lg-4">
+            <span class="input-group-addon">My id</span>
+            <input type="text" th:field="*{myId}" class="form-control" placeholder="myId"/>
+        </div>
+        <br/>
+        <div class="input-group input-group-md col-lg-4">
+            <span class="input-group-addon">Password</span>
+            <input type="password" class="form-control" th:field="*{password}" placeholder="password"/>
+        </div>
+        <br/>
+        <input type="submit" value="Login" class="btn btn-primary center"/>
+        </div>
+        </form>
+    </div>
+
+</body>
+<footer style="padding: 1em; color: white; background-color:#cd1429;  clear: left; text-align: center;">Copyright © UGA - CSCI6370 - Term Project<br><br>
+Team: Chandana | Prasad | Vibodh | Sharmin </footer>
+</html>

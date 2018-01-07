@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>UGA Cloud Services</title>
+         <script   src="https://code.jquery.com/jquery-3.0.0.js"   integrity="sha256-jrPLZ+8vDxt2FnE1zvZXCkCcebI/C8Dt5xyaQBjxQIo="   crossorigin="anonymous"></script>
+        <script type="text/javascript" src="js/cloudrequest.js"></script>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<style>
+	html{
+	height: 100%;
+	}
+	.banner{
+	margin-left:10%;
+	color: #cd1429;
+	font-size:2.7em;
+	}
+	.login-container{
+	margin:150px;
+	}
+	
+	</style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <img src="../images/images.png"  alt="UGA logo" style="height:6em"/>
+        <span style="margin-left:10%;color: #cd1429;font-size:2.7em;"><b>UGA Cloud services</b></span>
+    </header>
+
+    <div style="margin-top: 5%">
+        
+        <label><b>Approve Requests:</b></label>
+<br><br>
+
+        <table id="pendingRequestTable" class="table table-striped table-hover" style="overflow: auto; height: 150px;">
+            <tr><th style="display:none"></th><th style="display:none"></th><th><b>Student Name</b></th><th><b>Service Requested</b></th><th><b>Approve Request</b></th></tr>
+            <tr th:each="request :${pendingUsers}">
+            <td style="display:none" th:text="${request.allocation.requestId}"></td>
+            <td style="display:none" th:text="${request.services.serviceId}"></td>
+            <td th:text="${request.name}"></td><td th:text="${request.services.serviceName}"></td>
+                <td>
+                    <div class="checkbox" style="margin-left:10% ">
+                        <input type="checkbox" class="pendingApprovals" value="approve">
+                    </div>
+            </td></tr>
+           <!--   <tr><td>James</td><td>ML</td>
+                <td>
+                    <div class="checkbox" style="margin-left:10% ">
+                        <input type="checkbox" value="approve">
+                    </div>
+                </td></tr>
+            <tr><td>James</td><td>ML</td>
+                <td>
+                    <div class="checkbox" style="margin-left:10% ">
+                        <input type="checkbox" value="approve">
+                    </div>
+                </td></tr>
+            <tr><td>James</td><td>ML</td>
+                <td>
+                    <div class="checkbox" style="margin-left:10% ">
+                        <input type="checkbox" value="approve">
+                    </div>
+                </td></tr>-->
+        </table>
+
+        <br><br>
+
+<div class="container">
+ <form action="/loadDepartment" th:object="${user}" method="post">
+                <input type="hidden" name="deptId" th:field="${user.department.departmentId}">
+                <input type="hidden" name="gender" th:field="${user.gender}">
+                <input type="hidden" name="email" th:field="${user.email}">
+                <input type="hidden" name="dob" th:field="${user.dob}">
+                <input type="hidden" name="81Id" th:field="${user.xx81_ID}">
+                <input type="hidden" name="myid" th:field="${user.myId}">
+                <input type="hidden" name="name" th:field="${user.name}">
+                <input type="hidden" name="address" th:field="${user.address}">
+                <input type="hidden" name="role" th:field="${user.role}">
+                 <input type="submit"  value="Back" id= "backBtn" class="btn btn-primary" style="margin-left: 30%"></input>
+                 <button type="button"  id= "approveBulk" class="btn btn-primary" style="margin-left: 40%">Approve</button>
+                
+            </form>
+    </div>   
+       
+    </div>
+
+
+</div>
+</body>
+<footer style="padding: 1em; color: white; background-color:#cd1429;  clear: left; text-align: center;">Copyright © UGA - CSCI6370 - Term Project<br><br>
+Team: Chandana | Prasad | Vibodh | Sharmin </footer>
+</html>

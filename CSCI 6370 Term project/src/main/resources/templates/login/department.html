@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>UGA Cloud Services</title>
+    <script   src="https://code.jquery.com/jquery-3.0.0.js"   integrity="sha256-jrPLZ+8vDxt2FnE1zvZXCkCcebI/C8Dt5xyaQBjxQIo="   crossorigin="anonymous"></script>
+ 
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script type="text/javascript" src="js/cloudrequest.js"></script>
+    <style>
+	html{
+	height: 100%;
+	}
+	.banner{
+	margin-left:10%;
+	color: #cd1429;
+	font-size:2.7em;
+	}
+	.login-container{
+	margin:150px;
+	}
+	
+	</style>
+
+</head>
+<body>
+    <div style="background-color: #cd1429" align="right">
+        <div class="btn-group dropdown">
+            <button class=" btn btn-default dropdown-toggle" type="button" id="userBtn" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="true"
+                    style="background-color: #cd1429; border: #c8cdcb;color: white">
+               <label th:text="${user.name}">Faculty Name</label>
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" align="right">
+                <li class="dropdown"><a href="/"> Logout</a></li>
+            </ul>
+        </div>
+    </div>
+
+<div class="container">
+	<header>
+        <img src="../images/images.png"  alt="UGA logo" style="height:6em"/>
+        <span style="margin-left:10%;color: #cd1429;font-size:2.7em;"><b>UGA Cloud services</b></span>
+    </header>
+    
+    
+    <div class="col-lg-4" style="margin-top: 5%">
+        <!-- <span class="iput-group-addon"><b>Service</b></span>-->
+
+        <label><b>Students List:</b></label>
+        <div style="overflow: auto; height: 200px">
+        <table class="table table-striped table-hover">
+            <tr><th>Student Name</th><th>Service accessing</th></tr>
+            <tr th:each="student : ${students}">
+            <td th:text="${student.name}"></td>
+             <td th:text="${student.services.serviceName}"></td>
+            
+            </tr>
+            
+
+        </table>
+        </div>
+        <br>
+
+        <label for="service"><b>Request Service:</b></label>
+
+        <div class="input-group">
+            <select class="form-control" id="service">
+                <option value="" disabled selected>Select service</option>
+                <option th:each="operator : ${services}" th:value="${operator.serviceId}" th:text="${operator.serviceName}"></option>
+                
+
+            </select>
+            <span class="input-group-btn"> <button id="requestService" class="btn btn-primary" type="submit">Submit</button></span>
+        </div>
+    </div>
+
+    <div class="col-lg-6" style="float: right;margin-top: 3%">
+        <div>        <label style="color: #cd1429"><b>Activity feed:</b></label></div>
+
+        <div style="overflow: auto; height: 150px">
+        <div id="activeList">
+
+            <label><b>You are holding:</b></label>
+            <ul class="list-group">
+               <li class="list-group-item" th:each="operator :${activeServices}" th:text="${operator.serviceName}"><span><img src="images/download.jpg" width="10" height="10"/></span>  </li>
+              
+              <!--   <li class="list-group-item"><span><img src="images/download.jpg" width="10" height="10"></span> ML service </li>
+                <li class="list-group-item"><span><img src="images/download.jpg" width="10" height="10"></span> GPU</li>
+                <li class="list-group-item"><span><img src="images/download.jpg" width="10" height="10"></span> GPU</li>
+                <li class="list-group-item"><span><img src="images/download.jpg" width="10" height="10"></span> GPU</li>
+                <li class="list-group-item"><span><img src="images/download.jpg" width="10" height="10"></span> GPU</li>
+                <li class="list-group-item"><span><img src="images/download.jpg" width="10" height="10"></span> GPU</li> -->
+
+            </ul>
+        </div>
+    </div>
+<br>
+        <div style="overflow: auto; height: 150px">
+
+        <div id="pendingList">
+
+            <label><b>Pending on:</b></label>
+            <ul class="list-group" id="pending">
+             <th:block th:object="${pendingServices}" th:each="item : ${pendingServices}">
+                     <li class="list-group-item" th:text="${item.serviceName}"><span><img src="images/redDot.jpg" width="10" height="10"/></span></li>
+                 </th:block>
+                <li class="list-group-item"><span><img src="images/redDot.jpg" width="10" height="10"></span> Game center </li>
+                <li class="list-group-item"><span><img src="images/redDot.jpg" width="10" height="10"></span> AWS Database</li>
+            </ul>
+        </div>
+        </div>
+
+        <div style="display: block;">
+
+            <form action="/viewPendingRequests" th:object="${user}" method="post">
+                <button class="btn btn-primary" style="float: right" type="submit" value="Approve Requests">Approve Requests</button>
+                <input type="hidden" name="deptId" th:field="${user.department.departmentId}">
+                <input type="hidden" name="gender" th:field="${user.gender}">
+                <input type="hidden" name="email" th:field="${user.email}">
+                <input type="hidden" name="dob" th:field="${user.dob}">
+                <input type="hidden" name="81Id" th:field="${user.xx81_ID}">
+                <input type="hidden" name="myid" th:field="${user.myId}">
+                <input type="hidden" name="name" th:field="${user.name}">
+                <input type="hidden" name="address" th:field="${user.address}">
+                <input type="hidden" name="role" th:field="${user.role}">
+            </form>
+        </div>
+
+    </div>
+
+
+</div>
+<input type="hidden"  id="userId" th:value="${user.xx81_ID}">
+<input type="hidden"  id="departmentId" th:value="${user.department.departmentId}">
+<input type="hidden"  id="role" th:value="${user.role}">
+<div id="reqModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Request Status</h4>
+      </div>
+      <div class="modal-body">
+        <p id="reqSubmisssion"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+<footer style="padding: 1em; color: white; background-color:#cd1429;  clear: left; text-align: center;">Copyright © UGA - CSCI6370 - Term Project<br><br>
+Team: Chandana | Prasad | Vibodh | Sharmin </footer>
+</html>
