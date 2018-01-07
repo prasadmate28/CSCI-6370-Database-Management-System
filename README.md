@@ -1,8 +1,6 @@
 # CSCI-6370-Database-Management-System
 Database Systems (Fall 2017 CSCI 6370) - Term Project - UGA Cloud Services
-
-Team Members: Chandana Marneni, Prasad Mate, Sharmin Pathan, Vibodh Fenani
-
+------------------------------------------------------------------------------------------
 Technologies Used: PostGres SQL, AWS, Spring boot, bootstrap
 
 Problem Statement: 
@@ -21,18 +19,16 @@ approval from the department head, the request is fulfilled if the required reso
 service are available. Resource admins job is to monitor the resources used and to increase the number
 of resources on demand.
 
+Team Members: Chandana Marneni, Prasad Mate, Sharmin Pathan, Vibodh Fenani
+
 Content:
 -------------------
-The zip file named, 'CSCI 6370 Term Project' contains the following:
-
-- Project 5.zip 						| contains source code of project 5
-- Project_dump.sql					| SQL create and insert statements
-- OnInsertTrigg On Resources table.sql		| Trigger 1	
-- OnUpdateTrigg On Allocation table.sql		| Trigger 2
-- UML Class diagram.png					| Class diagram
-- Readme						| Readme
-- Cloud Manager.pdf					| Original presentation
-
+'CSCI 6370 Term project' contains the following:
+- src               | contains source code of the application  
+- target            | conatains built files of the source code
+- pom.xml           | contains required dependencies
+- sql files         | contains sql dump and triggers needed
+- UML class diagram | class diagram for the system
 
 Before Execution :
 -----------------------
@@ -44,21 +40,16 @@ Before Execution :
 -- Load triggers using pgAdmin
 -- In /src/main/resources/application.properties file, uncomment the commented code and fill in credentials for your postgres machine.
 
------> Option2 : Connect to AWS host
--- put host name as  awsproj.cjq9bdulkcax.us-east-1.rds.amazonaws.com:5432
--- user name as rootAWS
--- password as password
--- Keep the original config intact
-
-
 Execution Instructions:
 -----------------------
+- Download the project zip file and extract it
 - Import the project in eclipse or intelliJ workspace
 - Write click on project workspace and run as a spring boot application
 - On browser, type localhost:8080 
 - Enter user_id and password for required user.
 
---Sample login creds:
+Sample login creds: (valid only if given sql dump is restored)
+----------------------------------
 -Faculty : (CX00527,PASSWORD1)
 -Student : (CX20527,PASSWORD2)
 -Rsr Manager: (AX00527,PASSWORD3)
