@@ -10,6 +10,16 @@ Project includes database design (UML Class Diagram, 3NF/BCNF Normalization), po
 The Web development framework is Spring boot.
 
 Project Idea:
+UGA cloud services is an online portal where UGA students can have access to multiple cloud services
+provided by UGA infrastructure. These services may be used by many stakeholders of the system for
+myriad purposes. The designed system is a web portal for managing different service request and ensure
+a smooth business.
+Our system identifies three users viz., the student, the faculty and the resource Administrator. We assume
+a set of services which are often required in academia for coursework or research purposes. The student
+and faculty may request for a service, which needs to be approved by his/her own department head. On
+approval from the department head, the request is fulfilled if the required resources for the requested
+service are available. Resource admins job is to monitor the resources used and to increase the number
+of resources on demand.
 
 Content:
 -------------------
